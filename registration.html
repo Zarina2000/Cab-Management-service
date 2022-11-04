@@ -117,19 +117,55 @@
     <div class="parent">
         <div class="content"></div>
         <div class="aside">
-            <form action="login.html">
+            <form action="login.html" name="regform" onsubmit="validate(event)">
                 <h2>Register Now</h2>
-                <input id="myInput" type="text" class="form-control"style="margin-bottom:30px" placeholder="Full Name">
-                <input id="myInput" type="email" class="form-control"style="margin-bottom:30px" placeholder="E-mail">
-            <input id="myInput" type="text" class="form-control"style="margin-bottom:30px" placeholder="Username">
-            <input id="myInput" type="password" class="form-control " style="margin-bottom:30px" placeholder="password">
-            <input id="myInput" type="password" class="form-control"style="margin-bottom:30px" placeholder="Confirm Password">
-           <center> <input id="submit"type="submit" class="col-5" value="Submit"></center>
+                <input id="myInput"  type="text" class="form-control"style="margin-bottom:30px" placeholder="Full Name">
+                <input id="myInput" name="email" type="email" class="form-control"style="margin-bottom:30px" placeholder="E-mail">
+            <input id="myInput" name="uname" type="text" class="form-control"style="margin-bottom:30px" placeholder="Username">
+            <input id="myInput2" type="password" class="form-control " style="margin-bottom:30px" placeholder="password">
+            <input id="myInput3" type="password" class="form-control"style="margin-bottom:30px" placeholder="Confirm Password">
+           <center>   <span id="err-name" style="color: red;display:block;margin-bottom: 5px;"></span>
+             <input id="submit"type="submit" class="col-5" value="Submit"></center>
         </form>
         </div>
     </div>
 
-   
+    <script>
+        function validate(e){
+              e.preventDefault();
+               var password =document.getElementById('myInput2').value;
+               var cpassword =document.getElementById('myInput3').value;
+               //alert(txt);
+               var email=document.regform.email.value;  
+                var atposition=email.indexOf("@");  
+                var dotposition=email.lastIndexOf(".");  
+            if (atposition<1  || dotposition+2>=email.length){  
+                 alert("Please enter a valid e-mail address");  
+                 return false;  
+            }  
+            var nameRegex = /^[a-zA-Z\-.]+$/;
+            var validUsername = document.regform.uname.value.match(nameRegex);
+            if(validUsername == null){
+                alert("Your username is not valid. Only characters A-Z, a-z and '-' are  acceptable.");
+                document.regform.uname.focus();
+               return false
+            }
+               if(password.length <= 8){
+       
+                 document.getElementById('err-name').innerText="Password requires atleast 8 characters";
+               }
+               
+               if(password!=cpassword){
+       
+       document.getElementById('err-name').innerText="Password and Confirm password doesn't match";
+     }
+     else{
+        window.location.assign("login.html")
+     }
+           }
+       
+       
+           </script>
 </body>
 
 </html>

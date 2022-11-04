@@ -10,21 +10,8 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
-        .form-wrap {
-            background-image: url('https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,w_1349,h_644/v1613521692/assets/d9/ce6c00-32b0-4b93-9f0d-6f927d93da08/original/Rider_Home_bg_desktop2x.png');
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            width: 100%;
-            height: 92vh;
-            display: flex;
-        }
-        .container{
-            margin-top: 20px;
-            margin-right: 20px;
-            margin-bottom: 20px;
-            padding: 20px;
-        }
+      
+      
 
         .navbar-nav a {
             color: white;
@@ -115,14 +102,35 @@
     <div class="parent">
         <div class="content"></div>
         <div class="aside">
-            <form action="index.html">
-            <input id="myInput" type="text" class="form-control"style="margin-bottom:30px" placeholder="Username">
-            <input id="myInput" type="password" class="form-control " style="margin-bottom:30px" placeholder="password">
-           <center> <input id="submit"type="submit" class="col-5" value="Login"></center>
+            <form action="index.html" onsubmit="validate(event)">
+            <input id="myInput" type="text" class="form-control"style="margin-bottom:30px" placeholder="Username"  required>
+            <input id="myInput2" type="password" class="form-control " style="margin-bottom:30px" placeholder="password"  required>
+           <center>  <span id="err-name" style="color: red;display:block;"></span>
+             <input id="submit" type="submit" class="col-5" value="Login">
+          
+        </center>
         </form>
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" crossorigin="anonymous">
+    </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" crossorigin="anonymous">
+    </script>
+    <script>
+ function validate(e){
+       
+        var password =document.getElementById('myInput2').value;
+        //alert(txt);
+        if(password.length <= 8){
+
+          document.getElementById('err-name').innerText="Password requires atleast 8 characters";
+        }
+    }
+
+
+    </script>
   
 </body>
 
