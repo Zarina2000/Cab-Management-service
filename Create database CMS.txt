@@ -1,0 +1,49 @@
+Create database CMS;
+use CMS;
+
+CREATE TABLE cab(
+cab_id int PRIMARY KEY ,
+cab_no varchar(50) not null,
+cab_name varchar(50) NOT NULL,
+cab_desc varchar(50),
+cab_type varchar(50),
+capacity int);
+
+ CREATE TABLE passengerReg(
+ id int PRIMARY KEY ,
+ name varchar(50) NOT NULL,
+username varchar(50),
+email varchar(50),
+password varchar(50),
+cpassword varchar(50),
+ mobile varchar(50) NOT NULL,
+address varchar(150)
+);
+
+ CREATE TABLE driver(
+ id int PRIMARY KEY ,
+ name varchar(50) NOT NULL,
+username varchar(50),
+email varchar(50),
+password varchar(50),
+cpassword varchar(50),
+ mobile varchar(50) NOT NULL,
+ license varchar(100) unique,
+ dob date,
+address varchar(150),
+cab_id int,
+constraint FK_diver_cabid foreign key(cab_id) references cab(cab_id) 
+);
+
+create table cab_boooking(
+booking_code  int PRIMARY KEY ,
+pickUp varchar(50),
+destination varchar(50),
+booking_date date,
+travel_date date,
+cab_type varchar(50),
+passenger_id int,
+constraint FK_booking_passenger foreign key(passenger_id) references passengerReg(id) 
+ );
+
+
